@@ -1,0 +1,30 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Part1.Models.Pages
+@using Part1.Models.ViewModels
+@model PageViewModel<ArticlePage>
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="mb-3 fw-blod">@Model.Page.Title</h1>
+        <p class="text-muted">
+            Publisghed on @Model.Page.PublishedDate?.ToString("MMM dd,yyyy")
+            | Author: @Model.Page.AuthorName
+        </p>
+        @if(Model.Page.FeaturedImage !=null)
+        {
+            <img src="@Url.ContentUrl(Model.Page.FeaturedImage)"
+            class="img-fluid rounded shadow-sm my-4" alt="@Model.Page.Title" />
+        }
+    </div>
+
+     <div class="fs-5 1h-lg">
+         @Html.PropertyFor(m=>m.Page.FullContent)
+     </div>
+     <div class="mt-4">
+         <span class="badge bg-secondary">Tags: @Model.Page.Tags</span>
+     </div>
+     <hr class="my-5" />
+     <div class="text-center">
+         <a href="/" class="btn btn-outline-primary">Back to Home</a>
+     </div>
+
+</div>

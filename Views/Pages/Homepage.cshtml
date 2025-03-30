@@ -1,0 +1,72 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using Part1.Models.ViewModels
+@model HomePageViewModel
+<!-- Hero Section -->
+
+<section class="hero container-fluid">
+    @Html.PropertyFor(m => m.Page.HeaderBlock)
+</section>
+
+<!-- Featured Articles -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-title">Featured Articles</h2>
+        <div class="row">
+            @foreach (var article in Model.FeaturedArticles)
+            {
+                <div class="col-md-4">
+                    <div class="article-card">
+                        <img src="@Url.ContentUrl(article.FeaturedImage)" alt="Article Image">
+                        <div class="card-body">
+                            <h5 class="card-title">@article.Title</h5>
+                            <p class="article-meta">@article.PublishedDate</p>
+                            <p class="card-text">@article.ShortDescription</p>
+                            <a href="@Url.ContentUrl(article.ContentLink)" class="btn btn-primary mt-2">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        </div>
+    </div>
+</section>
+
+<!-- Recent Articles -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title">Recent Articles</h2>
+        <div class="row">
+            @foreach (var article in Model.RecentArticles)
+            {
+                <div class="col-md-6">
+                    <div class="article-card">
+                    <div class="card-body">
+                        <h5 class="card-title">@article.Title</h5>
+                        <p class="article-meta">@article.PublishedDate</p>
+                        <p class="card-text">@article.ShortDescription</p>
+                            <a href="@Url.ContentUrl(article.ContentLink)" class="btn btn-outline-primary mt-2">Read More</a>
+                    </div>
+                </div>
+            </div>
+            }
+            
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.CurrentPageNumber ? "active" : "")">
+                        <a class="page-link" href="?page=@i">@i</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<section class="hero container-fluid">
+    @Html.PropertyFor(m => m.Page.FooterBlock)
+</section>
