@@ -19,9 +19,4 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Translations\**\*" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Views\ArticlePage\" />
-    <Folder Include="Views\Homepage\" />
-  </ItemGroup>
 </Project>
